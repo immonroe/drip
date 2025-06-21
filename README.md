@@ -28,7 +28,7 @@ Drip is built as a robust, full-stack application leveraging modern technologies
 
 * **Backend:** Powered by **Java** with **Spring Boot**, creating a highly performant and scalable RESTful API. The backend follows the **Model-Repository-Controller** architectural pattern, ensuring clear separation of concerns, robust data management, and easy extensibility.
 
-* **Database:** A robust database solution is utilized to store complex user data, virtual closet items, social interactions, and clothing analytics.
+* **Database:** **PostgreSQL** is utilized as the primary database. Its robust support for relational data, extensibility (e.g., JSONB for semi-structured data like clothing attributes), and strong reliability make it an excellent fit for managing complex user profiles, virtual closet items, and analytical data required by Drip.
 
 * **Integration:** Designed to integrate with external services for advanced features like barcode data retrieval and potential future AI/ML-driven style recommendations.
 
