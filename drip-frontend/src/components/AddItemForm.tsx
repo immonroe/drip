@@ -7,8 +7,7 @@ export default function AddItemForm({ onItemAdded }: { onItemAdded: () => void }
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [loading, setLoading] = useState(false)
-//   typescript - can either be a string or null
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null) // typescript - can either be a string or null
 
   // Prevents default HTML page reload when user hit "add item" button   
   const handleSubmit = async (e: React.FormEvent) => {

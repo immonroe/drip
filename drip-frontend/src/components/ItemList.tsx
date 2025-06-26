@@ -1,13 +1,12 @@
-// src/components/ItemList.tsx
-"use client"
+"use client" // next.js - this component is client-side only (state and events which require browser)
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react" // react hook to track/update values in UI (form and inputs)
 import { Item } from "../types/Item"
 
 export default function ItemList() {
   const [items, setItems] = useState<Item[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null) // typescript - can either be a string or null
 
   useEffect(() => {
     const fetchItems = async () => {
