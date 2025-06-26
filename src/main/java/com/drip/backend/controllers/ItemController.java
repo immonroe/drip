@@ -10,33 +10,49 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-// marks class as handling HTTP req + returns JSON
+/**
+ * Controller for handling HTTP requests related to Item resources.
+ * Annotated with @RestController to indicate it's an API controller
+ * that returns JSON instead of rendering views.
+ */
 @RestController
 
-// prefix for all endpoints
+// Base path for all routes in this controller
 @RequestMapping("/api/items")
 public class ItemController {
 
     private final ItemRepository repo;
 
+    // Constructor-based dependency injection for the ItemRepository
     @Autowired
     public ItemController(ItemRepository repo) {
         this.repo = repo;
     }
 
-    // GET - yoink all items
+    /**
+     * GET /api/items aka YOINK
+     * Retrieves all items from the database.
+     */
     @GetMapping
     public List<Item> getAllItems() {
         return repo.findAll();
     }
 
-    // POST - create new obj/item
+    /**
+     * POST /api/items
+     * Creates a new item using the request body and saves it to the database.
+     */
     @PostMapping
     public Item create(@RequestBody Item item) {
         return repo.save(item);
     }
 
-    // PUT - update item (select by unique ID)
+    /**
+     * PUT /api/items/{id}
+     * Updates an existing item by its ID.
+     * If the item exists, it updates the name and description.
+     * Otherwise, it returns a 404 Not Found response.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item updatedItem) {
         Optional<Item> optionalItem = repo.findById(id);
@@ -51,14 +67,17 @@ public class ItemController {
         }
     }
 
-    // DELETE - remove item by ID
+    /**
+     * DELETE /api/items/{id}
+     * Deletes the item with the given ID if it exists.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         if (repo.existsById(id)) {
             repo.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 404
         }
     }
 }
