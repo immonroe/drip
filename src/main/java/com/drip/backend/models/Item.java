@@ -5,32 +5,42 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-// Entity marks class as table in db
-@Entity
+/**
+ * Entity class representing an item in the database.
+ * JPA will map this class to a table automatically.
+ */
+@Entity // Marks this class as a database entity (table)
 public class Item {
-    // Id marks primary key
-    @Id
-    // kind of straight forward via naming but it generates an ID
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id // Marks this field as the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates unique IDs (usually serial)
     private Long id;
 
+    // These fields will be mapped to columns in the database
     private String name;
-
     private String description;
 
-    // Constructors - needed for JPA
+    /**
+     * No-args constructor — required by JPA/Hibernate
+     */
     public Item() {
     }
 
+    /**
+     * Constructor used to create new Item objects with name and description
+     */
     public Item(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    // Getters and setters - standard Java beans
+    // --- Getters and setters ---
+
     public Long getId() {
         return id;
     }
+
+    // ID setter is omitted because it's auto-generated
 
     public String getName() {
         return name;
