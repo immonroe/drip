@@ -6,7 +6,7 @@ import { Item } from '../types/Item'
 export default function ItemList() {
     const [items, setItems] = useState<Item[]>([])
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null) // typescript - can either be a string or null
+    const [error, setError] = useState<string | null>(null)
     // edit states
     const [editingItemId, setEditingItemId] = useState<number | null>(null)
     const [editedName, setEditedName] = useState('')
